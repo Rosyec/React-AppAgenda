@@ -62,7 +62,7 @@ export const agendaSlice = createSlice({
             state.active.imageUrls = [ ...state.active.imageUrls, ...action.payload ];
             state.isSaving = false;
         },
-        clearAllNotesLogout: (state, action) => {
+        clearAllNotesLogout: (state) => {
             state.isSaving = false;
             state.messagesaved = '',
             state.notes = [],
