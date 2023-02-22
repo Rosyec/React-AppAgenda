@@ -8,11 +8,11 @@ import { PublicRoutes } from './PublicRoutes';
 
 export const RouterApp = () => createBrowserRouter([
     {
-        path: '/',
+        path: '/*',
         element: <Navigate to={ '/auth/login' }/>
     },
     {
-        path: '/auth',
+        path: '/auth/*',
         element: <PublicRoutes><AgendaApp/></PublicRoutes>,
         children: [
             {
@@ -30,7 +30,7 @@ export const RouterApp = () => createBrowserRouter([
         ]
     },
     {
-        path: '/app',
+        path: '/app/*',
         element: <PrivateRoutes><AgendaApp/></PrivateRoutes>,
         children: [
             {
