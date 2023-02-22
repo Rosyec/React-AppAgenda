@@ -25,7 +25,7 @@ export const RouterApp = () => createBrowserRouter([
             },
             {
                 path: '*',
-                element: <Navigate to={ '/auth/login' }/>
+                element: <Navigate to={ 'login' }/>
             }
         ]
     },
@@ -39,7 +39,7 @@ export const RouterApp = () => createBrowserRouter([
             },
             {
                 path: '*',
-                element: <Navigate to={ '/app/agenda' }/>
+                element: <Navigate to={ 'agenda' }/>
             }
         ]
     },
