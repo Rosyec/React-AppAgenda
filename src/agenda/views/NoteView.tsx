@@ -1,12 +1,12 @@
-import { Box, Button, Card, CardContent, Grid, Modal, Paper, TextField, Typography } from "@mui/material"
+import { Button, Card, CardContent, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Grid, Modal, Paper, TextField, Typography } from "@mui/material"
 import { ImageGalerry } from "../components/ImageGalerry"
 import { useForm } from "../../hooks/useForm"
 import { useAppDispatch, useAppSelector } from "../../store/hooks"
 import { RootState } from "../../store/store"
-import React, { BaseSyntheticEvent, useEffect } from "react"
+import React, { useEffect } from "react"
 import { setActiveNote } from "../../store/agenda/agendaSlice"
 import { deleteActiveNote, saveNote, startUploadingFiles } from "../../store/agenda/thunks"
-import { CloudUploadRounded, UploadRounded } from "@mui/icons-material"
+import { CloudUploadRounded } from "@mui/icons-material"
 import { CircularLoader } from "../components/LinearLoader"
 
 export const NoteView = () => {
@@ -49,17 +49,6 @@ export const NoteView = () => {
         dispatch(startUploadingFiles(files));
     }
 
-    const style = {
-        position: 'absolute' as 'absolute',
-        top: '50%',
-        left: '50%',
-        transform: 'translate(-50%, -50%)',
-        width: 400,
-        bgcolor: 'background.paper',
-        boxShadow: 24,
-        p: 4,
-    };
-
     return (
         <>
             <Grid className="animate__animated animate__fadeIn" container direction="row" justifyContent="center" alignItems="center" sx={{ minHeight: '86vh' }}>
@@ -101,27 +90,33 @@ export const NoteView = () => {
                                 </Grid>
                             </Grid>
                             <Grid item>
-                                <Typography sx={{textAlign: 'center'}} fontSize={15} color="primary" fontWeight="light"> {dateString} </Typography>
+                                <Typography sx={{ textAlign: 'center' }} fontSize={15} color="primary" fontWeight="light"> {dateString} </Typography>
                             </Grid>
                         </Grid>
                     </CardContent>
                 </Card>
             </Grid>
-            <Modal
-                sx={{display: 'flex'}}
+            <Dialog
                 open={open}
                 onClose={handleClose}
-                aria-labelledby="modal-modal-title"
-                aria-describedby="modal-modal-description">
-                <Box sx={style}>
-                    <Typography id="modal-modal-title" variant="h6" component="h2">
-                        Mi Agenda
-                    </Typography>
-                    <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                        {messagesaved}
-                    </Typography>
-                </Box>
-            </Modal>
+                aria-labelledby="alert-dialog-title"
+                aria-describedby="alert-dialog-description"
+            >
+                <DialogTitle id="alert-dialog-title">
+                    {"Mi Agenda"}
+                </DialogTitle>
+                <DialogContent>
+                    <DialogContentText id="alert-dialog-description">
+                        { messagesaved }
+                    </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                    {/* <Button onClick={handleClose}>Disagree</Button> */}
+                    <Button onClick={handleClose} autoFocus>
+                        Ok
+                    </Button>
+                </DialogActions>
+            </Dialog>
         </>
     )
 }
